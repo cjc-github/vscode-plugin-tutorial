@@ -15,7 +15,71 @@
     "commands": [
       {
         "command": "menu.helloWorld",
-        "title": "Hello World"
+        "title": "hello world" 
+      },
+      {
+        "command": "menu.command1",
+        "title": "命令1" 
+      },
+      {
+        "command": "menu.command2",
+        "title": "命令2" 
+      },
+      {
+        "command": "menu.command3",
+        "title": "命令3" 
+      },
+      {
+        "command": "menu.command4",
+        "title": "命令4" 
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "submenu": "test",
+          "group": "navigation",
+          "title": "子菜单名称"
+        },
+        {
+          "submenu": "test1",
+          "group": "navigation",
+          "title": "子菜单名称1"
+        }
+      ],
+      "test": [
+        {
+          "command": "menu.command1",
+          "group": "group1"
+        },
+        {
+          "command": "menu.helloWorld",
+          "group": "group1"
+        },
+        {
+          "command": "menu.command2",
+          "group": "group2"
+        }
+      ],
+      "test1": [
+        {
+          "command": "menu.command3",
+          "group": "group1"
+        },
+        {
+          "command": "menu.command4",
+          "group": "group2"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "test",
+        "label": "菜单"
+      },
+      {
+        "id": "test1",
+        "label": "菜单1"
       }
     ]
   },
