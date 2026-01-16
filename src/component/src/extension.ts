@@ -18,6 +18,8 @@ export function activate(context: vscode.ExtensionContext) {
 		/** 组件：进度条 */
 		await fun4();
 
+		/** 组件：配置 */
+
 	});
 
 	context.subscriptions.push(disposable);
@@ -118,10 +120,10 @@ function fun3() {
 
 async function fun4() {
 	await notification_progress_without_progressbar_and_cancel();
-	// await notification_progress_with_cancel();
-	// await notification_progress_without_cancel();
-	// await source_control_progress();
-	// await window_progress();
+	await notification_progress_with_cancel();
+	await notification_progress_without_cancel();
+	await source_control_progress();
+	await window_progress();
 }
 
 async function notification_progress_without_progressbar_and_cancel() {

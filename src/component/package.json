@@ -12,6 +12,19 @@
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
+    "configuration": {
+      "title": "My Extension Configuration",
+      "type": "object",
+      "properties": {
+        "myextension.int_var": {
+          "type": "integer",
+          "default": 1,
+          "minimum": 1,
+          "maximum": 50,
+          "description": "Defines the number allowed (1-50), recommended value <= 10."
+        }
+      }
+    },
     "commands": [
       {
         "command": "component.helloWorld",
