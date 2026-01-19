@@ -1,3 +1,4 @@
+import { exec, spawn } from 'child_process';
 import * as vscode from 'vscode';
 
 export function activate(context: vscode.ExtensionContext) {
@@ -16,10 +17,12 @@ export function activate(context: vscode.ExtensionContext) {
 
 
 		/** 组件：进度条 */
-		await fun4();
+		// await fun4();
 
-		/** 组件：配置 */
-
+		/** 组件：外部命令 */
+		await spawn_command();
+		exec_command();
+		
 	});
 
 	context.subscriptions.push(disposable);
@@ -197,5 +200,48 @@ async function window_progress() {
 			await new Promise(resolve => setTimeout(resolve, 500));
 		}
 		vscode.window.showInformationMessage('任务完成！');
+	});
+}
+
+async function spawn_command() {
+	const taskProcess = await spawn('ls', ["-l"], {
+	shell: true,
+	});
+
+	taskProcess.stdout?.on('data', (data) => {
+		const output = data.toString();
+		console.log("spawn_command 输出内容:", output);
+	});
+
+	taskProcess.stderr?.on('data', (data) => {
+		const output = data.toString();
+		console.log("spawn_command 错误内容:", output);	
+	});
+
+	taskProcess.on('error', (err) => {
+		return;
+	});
+
+	taskProcess.on('close', (code) => {
+		console.log("spawn_command close代码:", code);
+	});
+}
+
+
+function exec_command() {
+	let command = "ls -l";
+	exec(command, (error, stdout, stderr) => {
+		if (error) {
+			console.log('exec_command 执行错误:', error);
+			return;
+		}
+		if (stderr) {
+			console.log('exec_command 标准错误输出:', stderr);
+			return;
+		}
+		if (stdout) {
+			console.log('exec_command 输出:', stdout);
+			return;
+		}
 	});
 }
